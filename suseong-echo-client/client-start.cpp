@@ -21,7 +21,7 @@ static void* recv_thread(void* p)
             break;
         }
         buf[n] = '\0';
-        printf("\n[받은 데이터] %s\n", buf);
+        printf("recv-> %s\n", buf);
         fflush(stdout);
     }
     return nullptr;
@@ -52,20 +52,19 @@ int main(int argc, char* argv[])
     
     char buf[BUFSIZE+1];
     
-    while(1)
+    while(true)
     {
-        printf("\n[보낼 데이터]");
         if (!fgets(buf, BUFSIZE+1, stdin)) break;
         
         int len = (int)strlen(buf);
         if (len && buf[len-1] == '\n') 
         {
-            buf[len-1] = '\0'; 
+            buf[len-1] = '\0';
             --len;
         }
         if(len == 0) continue;
         
-        ret = send(sock, buf, len, MSG_NOSIGNAL);
+        ret = send(sock, buf, len, 0);
         if(ret == SOCKET_ERROR)
         {
             err_display("send()");
