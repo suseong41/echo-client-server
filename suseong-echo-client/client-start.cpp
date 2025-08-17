@@ -55,8 +55,6 @@ int main(int argc, char* argv[])
         buf[ret] = '\0';
         printf("[받은 데이터] %s", buf);
     }
-    
     close(sock);   
-    
     return 0;
 }
