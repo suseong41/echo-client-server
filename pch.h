@@ -2,6 +2,7 @@
 #include <errno.h>
 #include <string.h>
 #include <stdlib.h>
+#include <pthread.h>
 
 void err_quit(const char *msg)
 {
